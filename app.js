@@ -38,7 +38,7 @@ app.use("/index", userslistRouter);
 
 
 // **Œ»ó "/"‚É—ˆ‚½‚ç/index‚É”ò‚Ô‚ª–{“–‚ÍƒƒOƒCƒ“‰æ–Ê‚É”ò‚Î‚·
-app.get("/", (req, res) => {
+app.get("/index", (req, res) => {
   res.redirect("/index");
 });
 
