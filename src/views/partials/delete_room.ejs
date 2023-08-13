@@ -1,0 +1,34 @@
+<!--delete_room.ejs-->
+<div class="container py-4">
+  <div>
+    <h2 class="text-center pt-5">本当に削除しますか?</h2>
+  </div>
+  <form action="/index/delete_room/<%= roomId %>" method="post">
+    <div class="row d-flex justify-content-center align-items-center pt-3">
+      <button
+        class="col-12 col-md-8 col-lg-6 col-xl-2 shadow p-3 inline-block text-dark text-center h3"
+        style="
+          border-radius: 0.75rem;
+          background-color: #eff1f2;
+          text-decoration: none;
+        "
+      >
+        はい
+      </button>
+    </div>
+  </form>
+  <form action="/index" method="get">
+    <div class="row d-flex justify-content-center align-items-center pt-3">
+      <button
+        class="col-12 col-md-8 col-lg-6 col-xl-2 shadow p-3 inline-block text-dark text-center h3"
+        style="
+          border-radius: 0.75rem;
+          background-color: #eff1f2;
+          text-decoration: none;
+        "
+      >
+        いいえ
+      </button>
+    </div>
+  </form>
+</div>

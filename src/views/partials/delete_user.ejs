@@ -1,0 +1,15 @@
+<!--delete_user.ejs-->
+<div class="container py-4">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div>
+      <h2 class="text-center pt-5">ルームユーザー一覧</h2>
+    </div>
+    <form action="/index/read_users/delete_user/<%= userId %>" method="post">
+      <label>本当に削除しますか？</label>
+      <button>はい</button>
+    </form>
+    <form action="/index/read_users" method="get">
+      <button>いいえ</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<!--send_message.ejs-->
+<div class="container">
+  <!--部屋にいるユーザの表示-->
+  <table frame="box">
+    参加者
+    <thead>
+      <tr>
+        <th scope="col">Account ID</th>
+        <th scope="col">名前</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const user of users) { %>
+      <tr>
+        <td><%= user.User.employee_id %></td>
+        <td><%= user.User.name %></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <!--メッセージの表示-->
+  <table>
+    <tbody id="messages">
+      <% for (const mes of messages) { %>
+      <tr>
+        <td>[<%= mes.createdAt.toDateString() %>]</td>
+        <td><%= mes.User.name %>さん(ID:<%= mes.User.employee_id %>)-></td>
+        <td><%= mes.message %></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <label for="message">メッセージ入力欄</label>
+  <input id="message" type="text" />
+  <button id="submit">送信</button>
+  <form action="/index/update_room/<%= roomId %>" method="get">
+    <button>編集</button>
+  </form>
+</div>

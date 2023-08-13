@@ -1,0 +1,86 @@
+<!--update_room.ejs-->
+<div class="container py-5">
+  <div class="row d-flex justify-content-center align-items-center">
+    <p class="h4 text-center mb-3">グループ名を編集する</p>
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <!--元はaction="/index/update_room/:user_id/:room_id-->
+      <div
+        class="shadow p-3"
+        style="border-radius: 0.75rem; background-color: #eff1f2"
+      >
+        <form action="/index/update_room/<%= roomId %>" method="post">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              name="roomName"
+              class="form-control"
+              id="name"
+              required
+            />
+            <label for="name">新しいグループ名</label>
+          </div>
+          <div class="button-form position-relative mb-1 row">
+            <div class="col">
+              <button class="btn btn-outline-dark" type="submit">作成</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div
+        class="row d-flex justify-content-center align-items-center pt-4"
+      ></div>
+      <div class="row d-flex justify-content-center align-items-center pt-4">
+        <a
+          href="/index/read_room/add_user/<%= roomId %>"
+          class="col-4 col-md-8 col-lg-6 col-xl-5 shadow p-3 inline-block text-dark text-center inline-block h5"
+          style="
+            border-radius: 0.75rem;
+            background-color: #eff1f2;
+            text-decoration: none;
+          "
+          >新たに人を招待する
+        </a>
+        <div class="row d-flex justify-content-center align-items-center pt-4">
+          <a
+            href="/index/read_room/delete_user/<%= roomId %>"
+            class="col-4 col-md-8 col-lg-6 col-xl-5 shadow p-3 inline-block text-dark text-center inline-block h5"
+            style="
+              border-radius: 0.75rem;
+              background-color: #eff1f2;
+              text-decoration: none;
+            "
+            >人を追放する
+          </a>
+          <div
+            class="row d-flex justify-content-center align-items-center pt-4"
+          >
+            <a
+              href="/index/delete_room/<%= roomId %>"
+              class="col-4 col-md-8 col-lg-6 col-xl-5 shadow p-3 inline-block text-dark text-center inline-block h5"
+              style="
+                border-radius: 0.75rem;
+                background-color: #eff1f2;
+                text-decoration: none;
+              "
+              >グループを削除する
+            </a>
+            <div
+              class="row d-flex justify-content-center align-items-center pt-4"
+            >
+              <a
+                href="/index/read_room/<%= roomId %>"
+                class="col-5 col-md-8 col-lg-6 col-xl-5 shadow p-3 inline-block text-dark text-center inline-block h5"
+                style="
+                  border-radius: 0.75rem;
+                  background-color: #eff1f2;
+                  text-decoration: none;
+                "
+                >チャットルームへ戻る
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
