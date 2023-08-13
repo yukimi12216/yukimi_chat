@@ -1,0 +1,45 @@
+<!--create_room.ejs-->
+<div class="container py-5">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div
+        class="shadow p-3"
+        style="border-radius: 0.75rem; background-color: #eff1f2"
+      >
+        <h4 class="mb-3">新しいグループを作成</h4>
+        <form action="/index/create_room" method="post">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              id="name"
+              placeholder="Group name"
+              required
+            />
+            <label for="name">グループ名</label>
+          </div>
+          <label class="mb-3">追加するメンバーを選んでください</label>
+          <% for (const object of members) { %>
+          <div class="boxes mb-3">
+            <input
+              type="checkbox"
+              name="add[]"
+              value="<%= object.id %>"
+              id="<%= object.id %>"
+            />
+            <label class="form-check-label" for="<%= object.id %>"
+              ><%= object.name %></label
+            >
+          </div>
+          <% } %>
+          <div class="button-form position-relative mb-3 row">
+            <div class="col">
+              <button class="btn btn-outline-dark" type="submit">作成</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<!-- room_add_user.ejs -->
+<div class="container py-5">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div
+        class="shadow p-3"
+        style="border-radius: 0.75rem; background-color: #eff1f2"
+      >
+        <form action="/index/read_room/add_user/<%= roomId %>" method="post">
+          <div>
+            <label class="mb-3">追加するメンバーを選んでください</label>
+            <% for (const object of members) { %>
+            <div class="boxes mb-3">
+              <input
+                type="checkbox"
+                name="add[]"
+                value="<%= object.id %>"
+                id="<%= object.id %>"
+              />
+              <label class="form-check-label" for="<%= object.id %>"
+                ><%= object.name %></label
+              >
+            </div>
+            <% } %>
+            <div class="button-form position-relative mb-3 row">
+              <div class="col">
+                <button class="btn btn-outline-dark" type="submit">作成</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

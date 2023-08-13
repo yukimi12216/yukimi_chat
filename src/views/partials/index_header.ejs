@@ -1,0 +1,44 @@
+<!-- index_head.ejs -->
+
+<div class="container sticky-top">
+  <nav class="py-1 border-bottom">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div>
+        <a
+          class="text-dark h3"
+          style="font-family: 'arial black'; text-decoration: none"
+          href="/index"
+        >
+          Chat service
+        </a>
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navbarNavAltMarkup"
+      >
+        <div class="navbar-nav">
+          <a class="nav-link" href="/index">Home</a>
+          <form method="get" name="form0" action="/index/read_users">
+            <input type="hidden" />
+            <a class="nav-link" href="javascript:form0.submit()">Member</a>
+          </form>
+          <form method="post" name="form1" action="/users/logout">
+            <input type="hidden" />
+            <a class="nav-link" href="javascript:form1.submit()">Logout</a>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </nav>
+</div>

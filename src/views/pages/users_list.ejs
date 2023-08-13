@@ -1,0 +1,50 @@
+<!-- users_list.ejs -->
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body>
+    <%- include('../partials/index_header'); %>
+    <div class="py-5">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div
+            class="shadow p-3 login-box"
+            style="border-radius: 0.75rem; background-color: #eff1f2"
+          >
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">名前</th>
+                  <th scope="col">権限</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <% for (const object of user) { %>
+              <tbody>
+                <th scope="col"><%= object.employee_id %></th>
+                <th scope="col"><%= object.name %></th>
+                <th scope="col"><%= object.employee_status %></th>
+
+                <th scope="col">
+                  <div id="button<%= object.employee_id %>"></div>
+                  <script>
+                    if (<%= isAdmin %> && (<%= object.employee_status %> !== 3)) {
+                      const button = document.getElementById("button<%= object.employee_id %>");
+                      button.insertAdjacentHTML('beforebegin','<form action="/index/read_users/delete_user/<%= object.id %>" method="get" style="display: inline"><button>アカウント削除</button></form><form action="/index/read_users/update_user/<%= object.id %>" method="get" style="display: inline"><button>編集</button></form>');
+                    }
+                  </script>
+                </th>
+              </tbody>
+              <% } %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('../partials/footer'); %>
+  </body>
+</html>

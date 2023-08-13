@@ -1,0 +1,15 @@
+<!--chatroom.ejs-->
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body>
+    <%- include('../partials/index_header'); %> <%-
+    include('../partials/message_and_send'); %>
+    <a href="/index/read_room/add_user/<%= roomId %>">AddUser</a>
+    <a href="/index/read_room/delete_user/<%= roomId %>">DeleteUser</a>
+    <%- include('../partials/footer'); %>
+    <script type="text/javascript" src="/chatroom.js"></script>
+  </body>
+</html>

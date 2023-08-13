@@ -1,0 +1,85 @@
+<!--update_user.ejs-->
+<div class="container">
+  <p>
+    <a href="/index/read_users">戻る</a>
+  </p>
+  <p>
+    <big>ユーザ編集ページ</big>
+  </p>
+  <form action="/index/read_users/update_user/<%= userId %>" method="POST">
+    <p>
+      <strong>Account ID</strong>
+      <br />
+      <label><%= user.employee_id %></label>
+    </p>
+    <p>
+      <strong>Name</strong>
+      <br />
+      <label>
+        <input type="text" name="new_name" value="<%= user.name %>" />
+        <button name="update_button" value="update_name">名前の変更</button>
+      </label>
+    </p>
+    <div class="errorMessage" id="new_name_error" style="display: none">
+      <p>新しい名前が入力されていません</p>
+    </div>
+    <p>
+      <strong>Email</strong>
+      <br />
+      <label><%= user.email %></label>
+    </p>
+    <p>
+      <strong>Password</strong>
+      <br />
+      <label>
+        <input
+          type="password"
+          name="new_pass1"
+          value="<%= user.password %>"
+          placeholder="パスワード"
+          required=""
+        />
+        <input
+          type="password"
+          name="new_pass2"
+          value="<%= user.password %>"
+          placeholder="再入力（確認用）"
+          required=""
+        />
+        <button name="update_button" value="update_password">
+          パスワードの変更
+        </button>
+      </label>
+    </p>
+    <p>
+      <strong>権限</strong>
+      <br />
+      <label>今の権限：<%= user.employee_status %></label>
+      <br />
+      <select name="new_status">
+        <option id="status2" value="2">2.管理者</option>
+        <option id="status1" value="1">1.リーダー</option>
+        <option id="status0" value="0">0.一般ユーザ</option>
+        <script type="text/javascript">
+          const status2 = document.getElementById("status2");
+          const status1 = document.getElementById("status1");
+          const status0 = document.getElementById("status0");
+          status2.removeAttribute("selected");
+          status1.removeAttribute("selected");
+          status0.removeAttribute("selected");
+          const currentStatus = document.getElementById(
+            `status${<%= user.employee_status %>}`
+          );
+          if (currentStatus !== null) {
+            currentStatus.setAttribute("selected", "");
+          }
+        </script>
+      </select>
+      <button name="update_button" value="update_status">確定</button>
+      <!--正しく動作されていれば表示されないエラーメッセージ-->
+    </p>
+    <div class="errorMessage" id="new_status_error" style="display: none">
+      <p>正しくないステータスが選択されています</p>
+    </div>
+  </form>
+</div>
