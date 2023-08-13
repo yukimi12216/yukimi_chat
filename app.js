@@ -3,20 +3,20 @@
 const express = require("express");
 const expressWs = require("express-ws");
 
-// **session‚Åg‚¤cookie-session‚ğ‚±‚±‚ç‚Å’Ç‰Á
+// **sessionã§ä½¿ã†cookie-sessionã‚’ã“ã“ã‚‰ã§è¿½åŠ 
 
-// Controller‚ğŒq‚®
+// Controllerã‚’ç¹‹ã
 
-// **‚±‚±•Ó‚Åusers‚Ìrouter‚ª•K—v
+// **ã“ã“è¾ºã§usersã®routerãŒå¿…è¦
 
 const roomRouter = require("./src/controller/room.controller.js");
 const messageRouter = require("./src/controller/message.controller.js");
 const userslistRouter = require("./src/controller/users_list.controller.js");
 const { support } = require("jquery");
 
-// **‚±‚±‚ç•Ó‚ÅƒZƒbƒVƒ‡ƒ“‚ğİ’è
+// **ã“ã“ã‚‰è¾ºã§ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’è¨­å®š
 
-// •K—v‚Èƒ~ƒhƒ‹ƒEƒFƒA
+// å¿…è¦ãªãƒŸãƒ‰ãƒ«ã‚¦ã‚§ã‚¢
 const app = express();
 expressWs(app);
 app.set("view engine", "ejs");
@@ -24,20 +24,20 @@ app.set("views", "./src/views");
 app.use(express.static("./src/public"));
 app.use(express.urlencoded({ extended: true }));
 
-// **ƒZƒbƒVƒ‡ƒ“İ’è‚Ìapp.use‚ğ‚±‚±‚É‘‚­
+// **ã‚»ãƒƒã‚·ãƒ§ãƒ³è¨­å®šã®app.useã‚’ã“ã“ã«æ›¸ã
 
 app.use(express.json());
 
-// APIİŒv
+// APIè¨­è¨ˆ
 
-// **‚±‚±‚ç•Ó‚Éusers‚Ìƒ‹[ƒg‚ğ’Ê‚·
+// **ã“ã“ã‚‰è¾ºã«usersã®ãƒ«ãƒ¼ãƒˆã‚’é€šã™
 
 app.use("/index", roomRouter);
 app.use("/index", messageRouter);
 app.use("/index", userslistRouter);
 
 
-// **Œ»ó "/"‚É—ˆ‚½‚ç/index‚É”ò‚Ô‚ª–{“–‚ÍƒƒOƒCƒ“‰æ–Ê‚É”ò‚Î‚·
+// **ç¾çŠ¶ "/"ã«æ¥ãŸã‚‰/indexã«é£›ã¶ãŒæœ¬å½“ã¯ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢ã«é£›ã°ã™
 app.get("/index", (req, res) => {
   res.redirect("/index");
 });
