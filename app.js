@@ -27,12 +27,12 @@ app.set("views", "./src/views");
 app.use(express.static("./src/public"));
 app.use(express.urlencoded({ extended: true }));
 
+
 app.use(express.json());
 app.use(session(set_opt));
 // API設計
 
 app.use("/users",usersRouter);
-
 app.use("/index", roomRouter);
 app.use("/index", messageRouter);
 app.use("/index", userslistRouter);
