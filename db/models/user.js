@@ -38,9 +38,6 @@ module.exports = (sequelize, DataTypes) => {
       employee_id: {
         type: DataTypes.TEXT,
         allowNull: false,
-        validate: {
-          is: /ee[0-9]{6}/,
-        },
       },
       employee_status: {
         type: DataTypes.INTEGER,
