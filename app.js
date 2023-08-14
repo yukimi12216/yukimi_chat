@@ -2,21 +2,24 @@
 "use strict";
 const express = require("express");
 const expressWs = require("express-ws");
+const session = require("cookie-session");
 
-// **session‚ÅŽg‚¤cookie-session‚ð‚±‚±‚ç‚Å’Ç‰Á
+// Controllerã‚’ç¹‹ã
 
-// Controller‚ðŒq‚®
-
-// **‚±‚±•Ó‚Åusers‚Ìrouter‚ª•K—v
+const usersRouter=require("./src/controller/users.controller.js");
 
 const roomRouter = require("./src/controller/room.controller.js");
 const messageRouter = require("./src/controller/message.controller.js");
 const userslistRouter = require("./src/controller/users_list.controller.js");
 const { support } = require("jquery");
 
-// **‚±‚±‚ç•Ó‚ÅƒZƒbƒVƒ‡ƒ“‚ðÝ’è
+const set_opt = {
+  name: "session",
+  secret: "wakarinikui key",
+  cookie: { maxAge: 60 * 70 * 1000 },
+};
 
-// •K—v‚Èƒ~ƒhƒ‹ƒEƒFƒA
+// å¿…è¦ãªãƒŸãƒ‰ãƒ«ã‚¦ã‚§ã‚¢
 const app = express();
 expressWs(app);
 app.set("view engine", "ejs");
@@ -24,22 +27,19 @@ app.set("views", "./src/views");
 app.use(express.static("./src/public"));
 app.use(express.urlencoded({ extended: true }));
 
-// **ƒZƒbƒVƒ‡ƒ“Ý’è‚Ìapp.use‚ð‚±‚±‚É‘‚­
-
 app.use(express.json());
+app.use(session(set_opt));
+// APIè¨­è¨ˆ
 
-// APIÝŒv
-
-// **‚±‚±‚ç•Ó‚Éusers‚Ìƒ‹[ƒg‚ð’Ê‚·
+app.use("/users",usersRouter);
 
 app.use("/index", roomRouter);
 app.use("/index", messageRouter);
 app.use("/index", userslistRouter);
 
 
-// **Œ»ó "/"‚É—ˆ‚½‚ç/index‚É”ò‚Ô‚ª–{“–‚ÍƒƒOƒCƒ“‰æ–Ê‚É”ò‚Î‚·
-app.get("/index", (req, res) => {
-  res.redirect("/index");
+app.get("/", (req, res) => {
+  res.redirect("/users/login");
 });
 
 module.exports = app;

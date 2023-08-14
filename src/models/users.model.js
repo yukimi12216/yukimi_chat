@@ -151,6 +151,106 @@ const users = {
       res.redirect(`/index/read_users/delete_user/${userId}`);
     }
   },
+  displaylogin: async (req, res) => {
+    try {
+      res.render("pages/users_login.ejs");
+    } catch (err) {
+      console.log(err);
+      res.redirect("/users/login");
+      return err;
+    }
+  },
+  login: async (req, res, next) => {
+    try {  const employee_id = req.body.employee_id;
+      const password = req.body.password;
+      const compare = await User.findOne({
+        where: {
+          employee_id,
+          password,
+        },
+      });
+      if (compare === null) {
+        res.redirect("/users/login");
+      } else {
+        req.session.user_id = compare.id;
+        console.log(compare.id);
+        res.redirect("/index");
+      }
+    }
+    catch (err) {
+      console.log(err);
+      res.redirect("/users/login");
+      return err;
+    }},
+    
+
+  displayregister: async (req, res) => {
+    try {
+      res.render("pages/users_register.ejs");
+    } catch (err) {
+      console.log(err);
+      res.redirect("/users/register");
+      return err;
+    }
+  },
+    
+  register: async (req, res) => {
+    try {
+      await User.sequelize.transaction(async (t) => {
+        const inputName = req.body.name;
+        const inputPassword = req.body.password;
+        const inputEmail = req.body.email;
+        const inputId = req.body.employee_id;
+
+        const user = await User.create(
+          {
+            name: inputName,
+            password: inputPassword,
+            email: inputEmail,
+            employee_id: inputId,
+          },
+          { transaction: t }
+        );
+
+        // 全体チャットに追加する
+        await UserRooms.create(
+          {
+            room_id: 0,
+            user_id: user.id,
+          },
+          { transaction: t }
+        );
+
+        res.redirect("/users/login");
+      });
+    } catch (err) {
+      console.log(err);
+      res.redirect("/users/register");
+      return err;
+    }
+  },
+
+
+  logout: async (req, res) => {
+    try {
+      await req.session.destroy
+      res.redirect('/users/login');
+    }
+      
+     catch (err) {
+      console.log(err);
+      res.redirect("/users/login");
+      return err;
+    }
+  },
+
+
+
+
+    
+  
 };
+
+
 
 module.exports = users;
