@@ -1,0 +1,102 @@
+<!--users_login.ejs-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body>
+    <div class="container sticky-top">
+      <nav class="py-3 border-bottom">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="text-center">
+            <h3 class="text-dark" style="font-family: 'arial black'">
+              Chat service
+            </h3>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div
+            class="shadow p-3 login-box"
+            style="border-radius: 0.75rem; background-color: #eff1f2"
+          >
+            <div class="text-center">
+              <h2>Register</h2>
+            </div>
+            <form action="/users/register" id="register" method="post">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  name="employee_id"
+                  class="form-control"
+                  id="employee_id"
+                  placeholder="account id"
+                  required=""
+                />
+                <label for="employee_id">Account Id</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  id="name"
+                  placeholder="name"
+                  required=""
+                />
+                <label for="name">Username</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="email"
+                  required=""
+                />
+                <label for="email">Email Address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="password"
+                  required=""
+                />
+                <label for="password">Password</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="password"
+                  name="con-password"
+                  class="form-control"
+                  id="con-password"
+                  placeholder="confirmation-password"
+                  required=""
+                />
+                <label for="con-password">Confirmation Password</label>
+              </div>
+              <div class="button-form position-relative mb-3 row">
+                <div class="col">
+                  <button
+                    class="btn btn-outline-dark btn-lg px-5 mb-3"
+                    type="submit"
+                  >
+                    Register
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('../partials/footer'); %>
+  </body>
+</html>
