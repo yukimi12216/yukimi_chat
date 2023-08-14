@@ -2,19 +2,22 @@
 "use strict";
 const express = require("express");
 const expressWs = require("express-ws");
-
-// **sessionで使うcookie-sessionをここらで追加
+const session = require("cookie-session");
 
 // Controllerを繋ぐ
 
-// **ここ辺でusersのrouterが必要
+const usersRouter=require("./src/controller/users.controller.js");
 
 const roomRouter = require("./src/controller/room.controller.js");
 const messageRouter = require("./src/controller/message.controller.js");
 const userslistRouter = require("./src/controller/users_list.controller.js");
 const { support } = require("jquery");
 
-// **ここら辺でセッションを設定
+const set_opt = {
+  name: "session",
+  secret: "wakarinikui key",
+  cookie: { maxAge: 60 * 70 * 1000 },
+};
 
 // 必要なミドルウェア
 const app = express();
@@ -24,22 +27,19 @@ app.set("views", "./src/views");
 app.use(express.static("./src/public"));
 app.use(express.urlencoded({ extended: true }));
 
-// **セッション設定のapp.useをここに書く
 
 app.use(express.json());
-
+app.use(session(set_opt));
 // API設計
 
-// **ここら辺にusersのルートを通す
-
+app.use("/users",usersRouter);
 app.use("/index", roomRouter);
 app.use("/index", messageRouter);
 app.use("/index", userslistRouter);
 
 
-// **現状 "/"に来たら/indexに飛ぶが本当はログイン画面に飛ばす
-app.get("/index", (req, res) => {
-  res.redirect("/index");
+app.get("/", (req, res) => {
+  res.redirect("/users/login");
 });
 
 module.exports = app;
