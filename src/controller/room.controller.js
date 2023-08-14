@@ -3,7 +3,7 @@
 const express = require("express");
 const router = express.Router();
 
-const userModel = require("../models/user.model");
+const userModel = require("../models/users.model");
 const model = require("../models/userrooms.model");
 
 router.use(userModel.checkUser);

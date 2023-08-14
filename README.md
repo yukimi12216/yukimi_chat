@@ -1,3 +1,11 @@
+## 使用するのに必要なコマンド
+
+```
+npm i
+npx sequelize-cli db:migrate
+npx sequelize-cli db:seed:all
+```
+
 ## 成果物の説明
 
 主な機能
